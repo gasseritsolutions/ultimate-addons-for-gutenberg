@@ -1914,6 +1914,24 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'test_item_count'         => 3,
 						),
 					),
+					'uagb/faq'        => array(
+						'slug'        => '',
+						'title'       => __( 'FAQ - Schema', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block helps you add FAQ to your website.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+						'attributes'  => array(
+							
+						),
+					),
+					'uagb/faq-child'        => array(
+						'slug'        => '',
+						'title'       => __( 'FAQ - Schema Child', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block helps you add single FAQ.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+						'attributes'  => array(
+							
+						),
+					),
 				);
 			}
 			return self::$block_attributes;
