@@ -31,8 +31,8 @@ const {
 
 const {
 	PanelBody,
-	SelectControl,
-	RangeControl
+	TextControl,
+	TextareaControl
 } = wp.components
 
 class UAGBFaqChildEdit extends Component {
@@ -55,7 +55,9 @@ class UAGBFaqChildEdit extends Component {
 
 		const { attributes, setAttributes } = this.props
         const {
-            block_id
+			block_id,
+			question,
+			answer
         } = attributes
 		var element = document.getElementById( "uagb-style-faq-child" + this.props.clientId )
 
@@ -63,8 +65,33 @@ class UAGBFaqChildEdit extends Component {
 			element.innerHTML = styling( this.props )
 		}
 
+		const faqChildControls = () => {
+
+			return (
+				<PanelBody
+					title={ __( "General Settings" ) }
+					initialOpen={ true }
+					className="uagb__url-panel-body"
+				>
+					<TextControl
+						label="Title"
+						value={ question }
+						onChange={ ( question ) => setAttributes( { question: question } ) }
+					/>
+					<TextareaControl
+						label="Content"
+						value={ answer }
+						onChange={ ( answer ) => setAttributes( { answer: answer } ) }
+					/>
+				</PanelBody>
+			)
+		}
+
 		return (
 			<Fragment>
+				<InspectorControls>
+					{ faqChildControls }
+				</InspectorControls>
                 <div className={ classnames(
                         "uagb-faq-child__outer-wrap",
                         `uagb-block-${ block_id }`
@@ -72,7 +99,24 @@ class UAGBFaqChildEdit extends Component {
                 >
                     <div className="uagb-faq-child__wrapper">
                         <div className="uagb-faq-child-repeater">
-
+							<div className="uag-faq-accordion">
+								<div className="uag-accordion-title" aria-expanded="false">                    
+									<span className="uag-accordion-icon uag-accordion-icon-right">
+										<span className="uag-accordion-icon-closed"><i className="fas fa-angle-right"></i></span>
+										<span className="uag-accordion-icon-opened"><i className="fas fa-angle-up"></i></span>
+									</span>
+									<span className="uag-question uag-question-span">
+										{ question }
+									</span>
+								</div>
+								<div className="uag-accordion-content">
+									<span>
+										<p>
+											{ answer }
+										</p>
+									</span>
+								</div>
+							</div>
                         </div>
                     </div>
                 </div>
