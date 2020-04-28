@@ -99,17 +99,17 @@ class UAGBFaqChildEdit extends Component {
                 >
                     <div className="uagb-faq-child__wrapper">
                         <div className="uagb-faq-child-repeater">
-							<div className="uag-faq-accordion">
-								<div className="uag-accordion-title" aria-expanded="false">                    
-									<span className="uag-accordion-icon uag-accordion-icon-right">
-										<span className="uag-accordion-icon-closed"><i className="fas fa-angle-right"></i></span>
-										<span className="uag-accordion-icon-opened"><i className="fas fa-angle-up"></i></span>
+							<div className="uag-faq-layout">
+								<div className="uag-title" aria-expanded="false">                    
+									<span className="uag-icon uag-icon-right">
+										<span className="uag-icon-closed"><i className="fas fa-angle-right"></i></span>
+										<span className="uag-icon-opened"><i className="fas fa-angle-up"></i></span>
 									</span>
 									<span className="uag-question uag-question-span">
 										{ question }
 									</span>
 								</div>
-								<div className="uag-accordion-content">
+								<div className="uag-content">
 									<span>
 										<p>
 											{ answer }
