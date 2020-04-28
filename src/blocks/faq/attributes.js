@@ -43,16 +43,14 @@ const attributes = {
 		type: "string",
 		default : "no"
 	},
-	enableSeparator: {
+	rowsGap: {
+		type: "number",
+		default : 10
+	},
+	columnsGap: {
 		type: "number",
 		default : 10
 	},
 }
-,
-			,
-			,
-			rowsGap,
-			columnsGap,
-			align,
-			,
+
 export default attributes
