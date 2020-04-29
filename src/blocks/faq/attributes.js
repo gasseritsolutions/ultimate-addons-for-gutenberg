@@ -51,6 +51,46 @@ const attributes = {
 		type: "number",
 		default : 10
 	},
+	boxBgColor: {
+		type: "string",
+		default: "#3a3a3a"
+	},
+	boxPaddingTypeMobile: {
+		type: "string",
+		default : "px"
+	},
+	boxPaddingTypeTablet: {
+		type: "string",
+		default : "px"
+	},
+	boxPaddingTypeDesktop: {
+		type: "string",
+		default : "px"
+	},
+	vBoxPaddingMobile: {
+		type: "number",
+		default : 10
+	},
+	hBoxPaddingMobile: {
+		type: "number",
+		default : 10
+	},
+	vBoxPaddingTablet: {
+		type: "number",
+		default : 10
+	},
+	hBoxPaddingTablet: {
+		type: "number",
+		default : 10
+	},
+	vBoxPaddingDesktop: {
+		type: "number",
+		default : 10
+	},
+	hBoxPaddingDesktop: {
+		type: "number",
+		default : 10
+	},
 }
 
 export default attributes

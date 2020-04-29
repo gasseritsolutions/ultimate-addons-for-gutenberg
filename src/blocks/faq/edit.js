@@ -25,6 +25,7 @@ const {
 const {
 	BlockControls,
 	BlockAlignmentToolbar,
+	ColorPalette,
 	InspectorControls,
 	InnerBlocks
 } = wp.blockEditor
@@ -32,7 +33,11 @@ const {
 const {
 	PanelBody,
 	SelectControl,
-	RangeControl
+	RangeControl,
+	TabPanel,
+	ButtonGroup,
+	Button,
+	Dashicon,
 } = wp.components
 
 const ALLOWED_BLOCKS = [ "uagb/faq-child" ]
@@ -66,6 +71,16 @@ class UAGBFaqEdit extends Component {
 			columnsGap,
 			align,
 			enableSeparator,
+			boxBgColor,
+			boxPaddingTypeMobile,
+			boxPaddingTypeTablet,
+			boxPaddingTypeDesktop,
+			vBoxPaddingMobile,
+			hBoxPaddingMobile,
+			vBoxPaddingTablet,
+			hBoxPaddingTablet,
+			vBoxPaddingDesktop,
+			hBoxPaddingDesktop,
         } = attributes
 		var element = document.getElementById( "uagb-style-faq-" + this.props.clientId )
 
@@ -201,15 +216,15 @@ class UAGBFaqEdit extends Component {
 									tabout = (
 										<Fragment>
 											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
-												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeMobile === "px" } aria-pressed={ paddingTypeMobile === "px" } onClick={ () => setAttributes( { paddingTypeMobile: "px" } ) }>{ "px" }</Button>
-												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeMobile === "%" } aria-pressed={ paddingTypeMobile === "%" } onClick={ () => setAttributes( { paddingTypeMobile: "%" } ) }>{ "%" }</Button>
+												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ boxPaddingTypeMobile === "px" } aria-pressed={ boxPaddingTypeMobile === "px" } onClick={ () => setAttributes( { boxPaddingTypeMobile: "px" } ) }>{ "px" }</Button>
+												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ boxPaddingTypeMobile === "%" } aria-pressed={ boxPaddingTypeMobile === "%" } onClick={ () => setAttributes( { boxPaddingTypeMobile: "%" } ) }>{ "%" }</Button>
 											</ButtonGroup>
 											<h2>{ __( "Padding" ) }</h2>
 											<RangeControl
 												label={ UAGB_Block_Icons.vertical_spacing }
 												className={ "uagb-margin-control" }
-												value={ vPaddingMobile }
-												onChange={ ( value ) => setAttributes( { vPaddingMobile: value } ) }
+												value={ vBoxPaddingMobile }
+												onChange={ ( value ) => setAttributes( { vBoxPaddingMobile: value } ) }
 												min={ 0 }
 												max={ 100 }
 												allowReset
@@ -217,8 +232,8 @@ class UAGBFaqEdit extends Component {
 											<RangeControl
 												label={ UAGB_Block_Icons.horizontal_spacing }
 												className={ "uagb-margin-control" }
-												value={ hPaddingMobile }
-												onChange={ ( value ) => setAttributes( { hPaddingMobile: value } ) }
+												value={ hBoxPaddingMobile }
+												onChange={ ( value ) => setAttributes( { hBoxPaddingMobile: value } ) }
 												min={ 0 }
 												max={ 100 }
 												allowReset
@@ -229,15 +244,15 @@ class UAGBFaqEdit extends Component {
 									tabout = (
 										<Fragment>
 											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
-												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeTablet === "px" } aria-pressed={ paddingTypeTablet === "px" } onClick={ () => setAttributes( { paddingTypeTablet: "px" } ) }>{ "px" }</Button>
-												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeTablet === "%" } aria-pressed={ paddingTypeTablet === "%" } onClick={ () => setAttributes( { paddingTypeTablet: "%" } ) }>{ "%" }</Button>
+												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ boxPaddingTypeTablet === "px" } aria-pressed={ boxPaddingTypeTablet === "px" } onClick={ () => setAttributes( { boxPaddingTypeTablet: "px" } ) }>{ "px" }</Button>
+												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ boxPaddingTypeTablet === "%" } aria-pressed={ boxPaddingTypeTablet === "%" } onClick={ () => setAttributes( { boxPaddingTypeTablet: "%" } ) }>{ "%" }</Button>
 											</ButtonGroup>
 											<h2>{ __( "Padding" ) }</h2>
 											<RangeControl
 												label={ UAGB_Block_Icons.vertical_spacing }
 												className={ "uagb-margin-control" }
-												value={ vPaddingTablet }
-												onChange={ ( value ) => setAttributes( { vPaddingTablet: value } ) }
+												value={ vBoxPaddingTablet }
+												onChange={ ( value ) => setAttributes( { vBoxPaddingTablet: value } ) }
 												min={ 0 }
 												max={ 100 }
 												allowReset
@@ -245,8 +260,8 @@ class UAGBFaqEdit extends Component {
 											<RangeControl
 												label={ UAGB_Block_Icons.horizontal_spacing }
 												className={ "uagb-margin-control" }
-												value={ hPaddingTablet }
-												onChange={ ( value ) => setAttributes( { hPaddingTablet: value } ) }
+												value={ hBoxPaddingTablet }
+												onChange={ ( value ) => setAttributes( { hBoxPaddingTablet: value } ) }
 												min={ 0 }
 												max={ 100 }
 												allowReset
@@ -257,15 +272,15 @@ class UAGBFaqEdit extends Component {
 									tabout = (
 										<Fragment>
 											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
-												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeDesktop === "px" } aria-pressed={ paddingTypeDesktop === "px" } onClick={ () => setAttributes( { paddingTypeDesktop: "px" } ) }>{ "px" }</Button>
-												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeDesktop === "%" } aria-pressed={ paddingTypeDesktop === "%" } onClick={ () => setAttributes( { paddingTypeDesktop: "%" } ) }>{ "%" }</Button>
+												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ boxPaddingTypeDesktop === "px" } aria-pressed={ boxPaddingTypeDesktop === "px" } onClick={ () => setAttributes( { boxPaddingTypeDesktop: "px" } ) }>{ "px" }</Button>
+												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ boxPaddingTypeDesktop === "%" } aria-pressed={ boxPaddingTypeDesktop === "%" } onClick={ () => setAttributes( { boxPaddingTypeDesktop: "%" } ) }>{ "%" }</Button>
 											</ButtonGroup>
 											<h2>{ __( "Padding" ) }</h2>
 											<RangeControl
 												label={ UAGB_Block_Icons.vertical_spacing }
 												className={ "uagb-margin-control" }
-												value={ vPaddingDesktop }
-												onChange={ ( value ) => setAttributes( { vPaddingDesktop: value } ) }
+												value={ vBoxPaddingDesktop }
+												onChange={ ( value ) => setAttributes( { vBoxPaddingDesktop: value } ) }
 												min={ 0 }
 												max={ 100 }
 												allowReset
@@ -273,8 +288,8 @@ class UAGBFaqEdit extends Component {
 											<RangeControl
 												label={ UAGB_Block_Icons.horizontal_spacing }
 												className={ "uagb-margin-control" }
-												value={ hPaddingDesktop }
-												onChange={ ( value ) => setAttributes( { hPaddingDesktop: value } ) }
+												value={ hBoxPaddingDesktop }
+												onChange={ ( value ) => setAttributes( { hBoxPaddingDesktop: value } ) }
 												min={ 0 }
 												max={ 100 }
 												allowReset
