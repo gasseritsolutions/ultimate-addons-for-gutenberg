@@ -81,6 +81,12 @@ class UAGBFaqEdit extends Component {
 			hBoxPaddingTablet,
 			vBoxPaddingDesktop,
 			hBoxPaddingDesktop,
+			borderStyle,
+			borderWidth,
+			borderRadius,
+			borderColor,
+			questionTextColor,
+			questionTextActiveColor,
         } = attributes
 		var element = document.getElementById( "uagb-style-faq-" + this.props.clientId )
 
@@ -181,8 +187,9 @@ class UAGBFaqEdit extends Component {
 					initialOpen={ true }
 					className="uagb__url-panel-body"
 				>
+					<hr className="uagb-editor__separator" />
 					<h2>{  __( " Box Styling" ) }</h2>
-
+					<hr className="uagb-editor__separator" />
 					<p className="uagb-setting-label">{ __( "Background Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: boxBgColor }} ></span></span></p>
 					<ColorPalette
 						value={ boxBgColor }
@@ -302,6 +309,68 @@ class UAGBFaqEdit extends Component {
 							}
 						}
 					</TabPanel>
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Border" ) }</h2>
+					<SelectControl
+						label={ __( "Style" ) }
+						value={ borderStyle }
+						options={ [
+							{ value: "none", label: __( "None" ) },
+							{ value: "solid", label: __( "Solid" ) },
+							{ value: "dotted", label: __( "Dotted" ) },
+							{ value: "dashed", label: __( "Dashed" ) },
+							{ value: "double", label: __( "Double" ) },
+						] }
+						onChange={ value => {
+							setAttributes( { borderStyle: value } )
+						} }
+					/>
+					{ "none" !== borderStyle &&
+						<RangeControl
+							label={ __( "Thickness" ) }
+							value={ borderWidth }
+							onChange={ value => {
+								setAttributes( { borderWidth: value } )
+							} }
+							min={ 0 }
+							max={ 20 }
+						/>
+					}
+					{ "none" !== borderStyle &&
+						<RangeControl
+							label={ __( "Rounded Corners" ) }
+							value={ borderRadius }
+							onChange={ value => {
+								setAttributes( { borderRadius: value } )
+							} }
+							min={ 0 }
+							max={ 50 }
+						/>
+					}
+					<hr className="uagb-editor__separator" />
+					<p className="uagb-setting-label">{ __( "Border Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: borderColor }} ></span></span></p>
+					<ColorPalette
+						value={ borderColor }
+						onChange={ ( value ) => setAttributes( { borderColor: value } ) }
+						allowReset
+					/>
+					<hr className="uagb-editor__separator" />
+					<h2>{  __( " Questions Styling" ) }</h2>
+				
+					<hr className="uagb-editor__separator" />
+					<p className="uagb-setting-label">{ __( "Question Text Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: questionTextColor }} ></span></span></p>
+					<ColorPalette
+						value={ questionTextColor }
+						onChange={ ( value ) => setAttributes( { questionTextColor: value } ) }
+						allowReset
+					/>
+					<p className="uagb-setting-label">{ __( "Question Text Active/Hover Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: questionTextActiveColor }} ></span></span></p>
+					<ColorPalette
+						value={ questionTextActiveColor }
+						onChange={ ( value ) => setAttributes( { questionTextActiveColor: value } ) }
+						allowReset
+					/>
+
 				</PanelBody>
 			)
 		}

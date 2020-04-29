@@ -91,6 +91,30 @@ const attributes = {
 		type: "number",
 		default : 10
 	},
+	borderStyle: {
+		type: "string",
+		default : "solid"
+	},
+	borderWidth: {
+		type: "number",
+		default : 2
+	},
+	borderRadius: {
+		type: "number",
+		default : 4
+	},
+	borderColor: {
+		type: "string",
+		default: "#eee"
+	},
+	questionTextColor: {
+		type: "string",
+		default: "#eee"
+	},
+	questionTextActiveColor: {
+		type: "string",
+		default: "#eee"
+	},
 }
 
 export default attributes
