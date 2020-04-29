@@ -77,7 +77,7 @@ class UAGBFaqEdit extends Component {
 			return times( faq_count, n => [ "uagb/faq-child", faq[n] ] )
         } )
 		
-		const faqControls = () => {
+		const faqGeneralSettings = () => {
 
 			return (
 				<PanelBody
@@ -158,10 +158,144 @@ class UAGBFaqEdit extends Component {
 			)
 		}
 
+		const faqStylingSettings = () => {
+
+			return (
+				<PanelBody
+					title={ __( "Styling" ) }
+					initialOpen={ true }
+					className="uagb__url-panel-body"
+				>
+					<h2>{  __( " Box Styling" ) }</h2>
+
+					<p className="uagb-setting-label">{ __( "Background Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: boxBgColor }} ></span></span></p>
+					<ColorPalette
+						value={ boxBgColor }
+						onChange={ ( value ) => setAttributes( { boxBgColor: value } ) }
+						allowReset
+					/>
+					<hr className="uagb-editor__separator" />
+					<TabPanel className="uagb-size-type-field-tabs uagb-size-type-field__common-tabs uagb-inline-margin" activeClass="active-tab"
+						tabs={ [
+							{
+								name: "desktop",
+								title: <Dashicon icon="desktop" />,
+								className: "uagb-desktop-tab uagb-responsive-tabs",
+							},
+							{
+								name: "tablet",
+								title: <Dashicon icon="tablet" />,
+								className: "uagb-tablet-tab uagb-responsive-tabs",
+							},
+							{
+								name: "mobile",
+								title: <Dashicon icon="smartphone" />,
+								className: "uagb-mobile-tab uagb-responsive-tabs",
+							},
+						] }>
+						{
+							( tab ) => {
+								let tabout
+
+								if ( "mobile" === tab.name ) {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeMobile === "px" } aria-pressed={ paddingTypeMobile === "px" } onClick={ () => setAttributes( { paddingTypeMobile: "px" } ) }>{ "px" }</Button>
+												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeMobile === "%" } aria-pressed={ paddingTypeMobile === "%" } onClick={ () => setAttributes( { paddingTypeMobile: "%" } ) }>{ "%" }</Button>
+											</ButtonGroup>
+											<h2>{ __( "Padding" ) }</h2>
+											<RangeControl
+												label={ UAGB_Block_Icons.vertical_spacing }
+												className={ "uagb-margin-control" }
+												value={ vPaddingMobile }
+												onChange={ ( value ) => setAttributes( { vPaddingMobile: value } ) }
+												min={ 0 }
+												max={ 100 }
+												allowReset
+											/>
+											<RangeControl
+												label={ UAGB_Block_Icons.horizontal_spacing }
+												className={ "uagb-margin-control" }
+												value={ hPaddingMobile }
+												onChange={ ( value ) => setAttributes( { hPaddingMobile: value } ) }
+												min={ 0 }
+												max={ 100 }
+												allowReset
+											/>
+										</Fragment>
+									)
+								} else if ( "tablet" === tab.name ) {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeTablet === "px" } aria-pressed={ paddingTypeTablet === "px" } onClick={ () => setAttributes( { paddingTypeTablet: "px" } ) }>{ "px" }</Button>
+												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeTablet === "%" } aria-pressed={ paddingTypeTablet === "%" } onClick={ () => setAttributes( { paddingTypeTablet: "%" } ) }>{ "%" }</Button>
+											</ButtonGroup>
+											<h2>{ __( "Padding" ) }</h2>
+											<RangeControl
+												label={ UAGB_Block_Icons.vertical_spacing }
+												className={ "uagb-margin-control" }
+												value={ vPaddingTablet }
+												onChange={ ( value ) => setAttributes( { vPaddingTablet: value } ) }
+												min={ 0 }
+												max={ 100 }
+												allowReset
+											/>
+											<RangeControl
+												label={ UAGB_Block_Icons.horizontal_spacing }
+												className={ "uagb-margin-control" }
+												value={ hPaddingTablet }
+												onChange={ ( value ) => setAttributes( { hPaddingTablet: value } ) }
+												min={ 0 }
+												max={ 100 }
+												allowReset
+											/>
+										</Fragment>
+									)
+								} else {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeDesktop === "px" } aria-pressed={ paddingTypeDesktop === "px" } onClick={ () => setAttributes( { paddingTypeDesktop: "px" } ) }>{ "px" }</Button>
+												<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ paddingTypeDesktop === "%" } aria-pressed={ paddingTypeDesktop === "%" } onClick={ () => setAttributes( { paddingTypeDesktop: "%" } ) }>{ "%" }</Button>
+											</ButtonGroup>
+											<h2>{ __( "Padding" ) }</h2>
+											<RangeControl
+												label={ UAGB_Block_Icons.vertical_spacing }
+												className={ "uagb-margin-control" }
+												value={ vPaddingDesktop }
+												onChange={ ( value ) => setAttributes( { vPaddingDesktop: value } ) }
+												min={ 0 }
+												max={ 100 }
+												allowReset
+											/>
+											<RangeControl
+												label={ UAGB_Block_Icons.horizontal_spacing }
+												className={ "uagb-margin-control" }
+												value={ hPaddingDesktop }
+												onChange={ ( value ) => setAttributes( { hPaddingDesktop: value } ) }
+												min={ 0 }
+												max={ 100 }
+												allowReset
+											/>
+										</Fragment>
+									)
+								}
+
+								return <div>{ tabout }</div>
+							}
+						}
+					</TabPanel>
+				</PanelBody>
+			)
+		}
+
 		return (
 			<Fragment>
 				<InspectorControls>
-					{ faqControls }
+					{ faqGeneralSettings() }
+					{ faqStylingSettings() }
 				</InspectorControls>
 
 				<div className={ classnames(
