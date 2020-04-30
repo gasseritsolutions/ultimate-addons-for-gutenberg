@@ -115,6 +115,58 @@ const attributes = {
 		type: "string",
 		default: "#eee"
 	},
+	questionPaddingTypeMobile: {
+		type: "string",
+		default : "px"
+	},
+	questionPaddingTypeTablet: {
+		type: "string",
+		default : "px"
+	},
+	questionPaddingTypeDesktop: {
+		type: "string",
+		default : "px"
+	},
+	vquestionPaddingMobile: {
+		type: "number",
+		default : 10
+	},
+	vquestionPaddingTablet: {
+		type: "number",
+		default : 10
+	},
+	vquestionPaddingDesktop: {
+		type: "number",
+		default : 10
+	},
+	answerTextColor: {
+		type: "string",
+		default: "#eee"
+	},
+	answerPaddingTypeMobile: {
+		type: "string",
+		default : "px"
+	},
+	answerPaddingTypeTablet: {
+		type: "string",
+		default : "px"
+	},
+	answerPaddingTypeDesktop: {
+		type: "string",
+		default : "px"
+	},
+	vanswerPaddingMobile: {
+		type: "number",
+		default : 10
+	},
+	vanswerPaddingTablet: {
+		type: "number",
+		default : 10
+	},
+	vanswerPaddingDesktop: {
+		type: "number",
+		default : 10
+	},
 }
 
 export default attributes
