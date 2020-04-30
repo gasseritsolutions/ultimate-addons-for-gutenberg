@@ -139,6 +139,18 @@ const attributes = {
 		type: "number",
 		default : 10
 	},
+	hquestionPaddingMobile: {
+		type: "number",
+		default : 10
+	},
+	hquestionPaddingTablet: {
+		type: "number",
+		default : 10
+	},
+	hquestionPaddingDesktop: {
+		type: "number",
+		default : 10
+	},
 	answerTextColor: {
 		type: "string",
 		default: "#eee"
@@ -166,6 +178,110 @@ const attributes = {
 	vanswerPaddingDesktop: {
 		type: "number",
 		default : 10
+	},
+	hanswerPaddingMobile: {
+		type: "number",
+		default : 10
+	},
+	hanswerPaddingTablet: {
+		type: "number",
+		default : 10
+	},
+	hanswerPaddingDesktop: {
+		type: "number",
+		default : 10
+	},
+	iconColor: {
+		type: "string",
+		default: "#eee"
+	},
+	iconActiveColor: {
+		type: "string",
+		default: "#eee"
+	},
+	gapBtwIconQUestion: {
+		type: "number",
+		default : 10
+	},
+	questionloadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
+	answerloadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
+	questionfontFamily: {
+		type: "string",
+		default: "",
+	},
+	questionfontWeight: {
+		type: "string",
+	},
+	questionfontSubset: {
+		type: "string",
+	},
+	questionfontSize: {
+		type: "number",
+	},
+	questionfontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	questionfontSizeTablet: {
+		type: "number",
+	},
+	questionfontSizeMobile: {
+		type: "number",
+	},
+	questionlineHeight: {
+		type: "number",
+	},
+	questionlineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	questionlineHeightTablet: {
+		type: "number",
+	},
+	questionlineHeightMobile: {
+		type: "number",
+	},
+	answerfontFamily: {
+		type: "string",
+		default: "",
+	},
+	answerfontWeight: {
+		type: "string",
+	},
+	answerfontSubset: {
+		type: "string",
+	},
+	answerfontSize: {
+		type: "number",
+	},
+	answerfontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	answerfontSizeTablet: {
+		type: "number",
+	},
+	answerfontSizeMobile: {
+		type: "number",
+	},
+	answerlineHeight: {
+		type: "number",
+	},
+	answerlineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	answerlineHeightTablet: {
+		type: "number",
+	},
+	answerlineHeightMobile: {
+		type: "number",
 	},
 }
 
