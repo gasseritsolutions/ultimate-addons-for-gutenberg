@@ -283,6 +283,18 @@ const attributes = {
 	answerlineHeightMobile: {
 		type: "number",
 	},
+	icon: {
+		type: "string",
+		default: "fas fa-plus"
+	},
+	iconActive: {
+		type: "string",
+		default: "fas fa-minus"
+	},
+	iconAlign: {
+		type: "string",
+		default : "left"
+	},
 }
 
 export default attributes

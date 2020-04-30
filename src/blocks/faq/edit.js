@@ -3,6 +3,9 @@
  */
 
 import classnames from "classnames"
+import UAGBIcon from "../../../dist/blocks/uagb-controls/UAGBIcon.json"
+import renderSVG from "../../../dist/blocks/uagb-controls/renderIcon"
+import FontIconPicker from "@fonticonpicker/react-fonticonpicker"
 import times from "lodash/times"
 import map from "lodash/map"
 import styling from "./styling"
@@ -41,6 +44,8 @@ const {
 } = wp.components
 
 const ALLOWED_BLOCKS = [ "uagb/faq-child" ]
+
+let svg_icons = Object.keys( UAGBIcon )
 class UAGBFaqEdit extends Component {
 
 	constructor() {
@@ -124,6 +129,9 @@ class UAGBFaqEdit extends Component {
 			answerlineHeight,
 			answerlineHeightMobile,
 			answerlineHeightTablet,
+			icon,
+			iconActive,
+			iconAlign
         } = attributes
 		var element = document.getElementById( "uagb-style-faq-" + this.props.clientId )
 
@@ -217,13 +225,15 @@ class UAGBFaqEdit extends Component {
 						min={ 0 }
 						max={ 50 }
 					/>
-					<RangeControl
-						label={ __( "Columns Gap" ) }
-						value={ columnsGap }
-						onChange={ ( value ) => setAttributes( { columnsGap: value } ) }
-						min={ 0 }
-						max={ 50 }
-					/>
+					{ 'grid' === layout &&
+						<RangeControl
+							label={ __( "Columns Gap" ) }
+							value={ columnsGap }
+							onChange={ ( value ) => setAttributes( { columnsGap: value } ) }
+							min={ 0 }
+							max={ 50 }
+						/>
+					}
 					<SelectControl
 						label={ __( "Alignment" ) }
 						value={ align }
@@ -560,28 +570,32 @@ class UAGBFaqEdit extends Component {
 						}
 					</TabPanel>
 					<hr className="uagb-editor__separator" />
-					<h2>{  __( " Icon Styling" ) }</h2>
-				
-					<hr className="uagb-editor__separator" />
-					<p className="uagb-setting-label">{ __( "Icon Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: iconColor }} ></span></span></p>
-					<ColorPalette
-						value={ iconColor }
-						onChange={ ( value ) => setAttributes( { iconColor: value } ) }
-						allowReset
-					/>
-					<p className="uagb-setting-label">{ __( "Icon Active/Hover Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: iconActiveColor }} ></span></span></p>
-					<ColorPalette
-						value={ iconActiveColor }
-						onChange={ ( value ) => setAttributes( { iconActiveColor: value } ) }
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Gap between Icon and Question" ) }
-						value={ gapBtwIconQUestion }
-						onChange={ ( value ) => setAttributes( { gapBtwIconQUestion: value } ) }
-						min={ 0 }
-						max={ 100 }
-					/>
+					{ 'accordion' === layout &&
+						<Fragment>
+							<h2>{  __( " Icon Styling" ) }</h2>
+						
+							<hr className="uagb-editor__separator" />
+							<p className="uagb-setting-label">{ __( "Icon Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: iconColor }} ></span></span></p>
+							<ColorPalette
+								value={ iconColor }
+								onChange={ ( value ) => setAttributes( { iconColor: value } ) }
+								allowReset
+							/>
+							<p className="uagb-setting-label">{ __( "Icon Active/Hover Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: iconActiveColor }} ></span></span></p>
+							<ColorPalette
+								value={ iconActiveColor }
+								onChange={ ( value ) => setAttributes( { iconActiveColor: value } ) }
+								allowReset
+							/>
+							<RangeControl
+								label={ __( "Gap between Icon and Question" ) }
+								value={ gapBtwIconQUestion }
+								onChange={ ( value ) => setAttributes( { gapBtwIconQUestion: value } ) }
+								min={ 0 }
+								max={ 100 }
+							/>
+						</Fragment>
+					}
 				</PanelBody>
 			)
 		}
@@ -631,12 +645,53 @@ class UAGBFaqEdit extends Component {
 				</PanelBody>
 			)
 		}
+		const faqIconSettings = () => {
+
+			return (
+				<PanelBody
+					title={ __( "Icon" ) }
+					initialOpen={ true }
+					className="uagb__url-panel-body"
+				>
+					<p className="components-base-control__label">{__( "Icon" )}</p>
+					<FontIconPicker
+						icons={svg_icons}
+						renderFunc= {renderSVG}
+						theme="default"
+						value={icon}
+						onChange={ ( value ) => setAttributes( { icon: value } ) }
+						isMulti={false}
+						noSelectedPlaceholder= { __( "Select Icon" ) }
+					/>
+					<p className="components-base-control__label">{__( "Active Icon" )}</p>
+					<FontIconPicker
+						icons={svg_icons}
+						renderFunc= {renderSVG}
+						theme="default"
+						value={iconActive}
+						onChange={ ( value ) => setAttributes( { iconActive: value } ) }
+						isMulti={false}
+						noSelectedPlaceholder= { __( "Select Icon" ) }
+					/>
+					<SelectControl
+						label={ __( "Icon Alignment" ) }
+						value={ iconAlign }
+						options={ [
+							{ value: "left", label: __( "Left" ) },
+							{ value: "right", label: __( "Right" ) },
+						] }
+						onChange={ ( value ) => setAttributes( { iconAlign: value } ) }
+					/>
+				</PanelBody>
+			)
+		}
 		return (
 			<Fragment>
 				<InspectorControls>
 					{ faqGeneralSettings() }
 					{ faqStylingSettings() }
 					{ faqTypographySettings() }
+					{ 'accordion' === layout && faqIconSettings() }
 				</InspectorControls>
 
 				<div className={ classnames(
