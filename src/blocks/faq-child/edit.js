@@ -49,6 +49,9 @@ class UAGBFaqChildEdit extends Component {
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-style-faq-child" + this.props.clientId )
 		document.head.appendChild( $style )
+
+		// const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
+		// console.log(getChildBlocks);
 	}
 
 	render() {

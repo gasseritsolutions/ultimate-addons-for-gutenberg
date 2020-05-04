@@ -76,14 +76,14 @@ function styling( props ) {
         iconAlign
     } = props.attributes
 
-    var selectors = {
-		".uagb-icon-list-repeater .uagb-icon-list__source-icon" : {
-			"color" : icon_color
-		},
-		".uagb-icon-list-repeater .uagb-icon-list__source-icon svg" : {
-			"fill" : icon_color
-		},
-	}
+    // var selectors = {
+	// 	".uagb-icon-list-repeater .uagb-icon-list__source-icon" : {
+	// 		"color" : icon_color
+	// 	},
+	// 	".uagb-icon-list-repeater .uagb-icon-list__source-icon svg" : {
+	// 		"fill" : icon_color
+	// 	},
+	// }
     var styling_css = '';
 	return styling_css
 }

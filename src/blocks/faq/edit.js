@@ -696,7 +696,7 @@ class UAGBFaqEdit extends Component {
 
 				<div className={ classnames(
 					"uagb-faq__outer-wrap",
-					`uagb-block-${ this.props.clientId }`
+					`uagb-block-${ this.props.clientId }`,
 					`uagb-faq-layout-${ this.props.attributes.layout }`
 				) }
 				>
