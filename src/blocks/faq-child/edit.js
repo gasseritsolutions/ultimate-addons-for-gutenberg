@@ -14,7 +14,7 @@ import TypographyControl from "../../components/typography"
 
 // Import Web font loader for google fonts.
 import WebfontLoader from "../../components/typography/fontloader"
-
+const { select } = wp.data;
 const { __ } = wp.i18n
 
 const {
@@ -50,8 +50,8 @@ class UAGBFaqChildEdit extends Component {
 		$style.setAttribute( "id", "uagb-style-faq-child" + this.props.clientId )
 		document.head.appendChild( $style )
 
-		// const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
-		// console.log(getChildBlocks);
+		const parentClientId = select( 'core/block-editor' ).getBlockHierarchyRootClientId( this.props.clientId );
+		const parentAttributes = select('core/block-editor').getBlockAttributes( parentClientId );
 	}
 
 	render() {
@@ -89,7 +89,34 @@ class UAGBFaqChildEdit extends Component {
 				</PanelBody>
 			)
 		}
+		const faqRenderAccordion = () => {
 
+			return (
+
+				<div className="uagb-faq-child__wrapper">
+					<div className="uagb-faq-child-repeater">
+						<div className="uag-faq-layout">
+							<div className="uag-title" aria-expanded="false">                    
+								<span className="uag-icon uag-icon-right">
+									<span className="uag-icon-closed"><i className="fas fa-angle-right"></i></span>
+									<span className="uag-icon-opened"><i className="fas fa-angle-up"></i></span>
+								</span>
+								<span className="uag-question uag-question-span">
+									{ question }
+								</span>
+							</div>
+							<div className="uag-content">
+								<span>
+									<p>
+										{ answer }
+									</p>
+								</span>
+							</div>
+						</div>
+					</div>
+                </div>
+			)
+		}
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -100,28 +127,7 @@ class UAGBFaqChildEdit extends Component {
                         `uagb-block-${ block_id }`
                     ) }
                 >
-                    <div className="uagb-faq-child__wrapper">
-                        <div className="uagb-faq-child-repeater">
-							<div className="uag-faq-layout">
-								<div className="uag-title" aria-expanded="false">                    
-									<span className="uag-icon uag-icon-right">
-										<span className="uag-icon-closed"><i className="fas fa-angle-right"></i></span>
-										<span className="uag-icon-opened"><i className="fas fa-angle-up"></i></span>
-									</span>
-									<span className="uag-question uag-question-span">
-										{ question }
-									</span>
-								</div>
-								<div className="uag-content">
-									<span>
-										<p>
-											{ answer }
-										</p>
-									</span>
-								</div>
-							</div>
-                        </div>
-                    </div>
+                    
                 </div>
 			</Fragment>
 		)
