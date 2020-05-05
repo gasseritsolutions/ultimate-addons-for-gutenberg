@@ -23,6 +23,10 @@ const attributes = {
 		type: "array",	
 		default : faq,	
 	},
+	layout: {
+		type: "string",
+		default : "accordion"
+	},
 	inactiveOtherItems: {
 		type: "string",
 		default : "yes"
@@ -294,6 +298,10 @@ const attributes = {
 	iconAlign: {
 		type: "string",
 		default : "left"
+	},
+	iconSize: {
+		type: "number",
+		default : 15
 	},
 }
 

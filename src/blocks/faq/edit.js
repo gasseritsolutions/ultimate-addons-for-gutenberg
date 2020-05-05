@@ -19,7 +19,7 @@ import TypographyControl from "../../components/typography"
 import WebfontLoader from "../../components/typography/fontloader"
 
 const { __ } = wp.i18n
-
+const { select } = wp.data;
 const {
 	Component,
 	Fragment,
@@ -50,6 +50,9 @@ class UAGBFaqEdit extends Component {
 
 	constructor() {
 		super( ...arguments )
+		this.onchangeIcon = this.onchangeIcon.bind( this )
+		this.onchangeActiveIcon = this.onchangeActiveIcon.bind( this )
+		this.onchangeLayout = this.onchangeLayout.bind( this )
 	}
 
 	componentDidMount() {
@@ -60,6 +63,37 @@ class UAGBFaqEdit extends Component {
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-style-faq-" + this.props.clientId )
 		document.head.appendChild( $style )
+	}
+
+	onchangeIcon ( value ) {
+		const { setAttributes } = this.props
+		const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
+
+		getChildBlocks.forEach((faqChild, key) => {
+			faqChild.attributes.icon = value
+		});
+
+		setAttributes( { icon: value } )
+	}
+	onchangeActiveIcon ( value ) {
+		const { setAttributes } = this.props
+		const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
+
+		getChildBlocks.forEach((faqChild, key) => {
+			faqChild.attributes.iconActive = value
+		});
+
+		setAttributes( { iconActive: value } )
+	}
+	onchangeLayout ( value ) {
+		const { setAttributes } = this.props
+		const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
+
+		getChildBlocks.forEach((faqChild, key) => {
+			faqChild.attributes.layout = value
+		});
+
+		setAttributes( { layout: value } )
 	}
 
 	render() {
@@ -189,7 +223,7 @@ class UAGBFaqEdit extends Component {
 							{ value: "accordion", label: __( "Accordion" ) },
 							{ value: "grid", label: __( "Grid" ) },
 						] }
-						onChange={ ( value ) => setAttributes( { layout: value } ) }
+						onChange={ (value) => this.onchangeLayout( value ) }
 					/>
 					<SelectControl
 						label={ __( "Inactive other items" ) }
@@ -659,7 +693,7 @@ class UAGBFaqEdit extends Component {
 						renderFunc= {renderSVG}
 						theme="default"
 						value={icon}
-						onChange={ ( value ) => setAttributes( { icon: value } ) }
+						onChange={ (value) => this.onchangeIcon( value ) }
 						isMulti={false}
 						noSelectedPlaceholder= { __( "Select Icon" ) }
 					/>
@@ -669,7 +703,7 @@ class UAGBFaqEdit extends Component {
 						renderFunc= {renderSVG}
 						theme="default"
 						value={iconActive}
-						onChange={ ( value ) => setAttributes( { iconActive: value } ) }
+						onChange={ (value) => this.onchangeActiveIcon( value ) }
 						isMulti={false}
 						noSelectedPlaceholder= { __( "Select Icon" ) }
 					/>

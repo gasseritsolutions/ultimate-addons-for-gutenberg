@@ -73,18 +73,22 @@ function styling( props ) {
         answerlineHeightTablet,
         icon,
         iconActive,
-        iconAlign
+        iconAlign,
+        iconSize
     } = props.attributes
 
-    // var selectors = {
-	// 	".uagb-icon-list-repeater .uagb-icon-list__source-icon" : {
-	// 		"color" : icon_color
-	// 	},
-	// 	".uagb-icon-list-repeater .uagb-icon-list__source-icon svg" : {
-	// 		"fill" : icon_color
-	// 	},
-	// }
+    var selectors = {
+
+		" .uag-icon svg" : {
+            "width" : generateCSSUnit( iconSize, 'px' ),
+            "height" : generateCSSUnit( iconSize, 'px' ),
+            "font-size" : generateCSSUnit( iconSize, 'px' )
+		},
+	}
     var styling_css = '';
+    var id = `.uagb-block-${ props.clientId }`
+    styling_css = generateCSS( selectors, id )
+
 	return styling_css
 }
 
