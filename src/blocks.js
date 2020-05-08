@@ -32,6 +32,10 @@ import "./blocks/blockquote/block.js"
 import "./blocks/marketing-button/block.js"
 import "./blocks/table-of-contents/block.js"
 
+import "./blocks/parent/block.js"
+import "./blocks/child1/block.js"
+//import "./blocks/child2/block.js"
+
 import UAGB_Block_Icons from "../dist/blocks/uagb-controls/block-icons"
 
 const { updateCategory } = wp.blocks
