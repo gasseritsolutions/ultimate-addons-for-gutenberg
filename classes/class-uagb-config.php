@@ -1919,6 +1919,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'title'       => __( 'FAQ - Schema', 'ultimate-addons-for-gutenberg' ),
 						'description' => __( 'This block helps you add FAQ to your website.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
+						'js_assets'   => array( 'uagb-faq-js' ),
 						'attributes'  => array(
 							
 						),
@@ -1975,6 +1976,10 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb-carousel-js'       => array(
 						'src' => UAGB_URL . 'assets/js/post-carousel.js',
 						'dep' => array( 'jquery', 'uagb-slick-js' ),
+					),
+					'uagb-faq-js'       => array(
+						'src' => UAGB_URL . 'assets/js/faq.js',
+						'dep' => array( 'jquery' ),
 					),
 				);
 			}

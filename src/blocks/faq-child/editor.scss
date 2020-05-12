@@ -1,0 +1,23 @@
+.uagb-faq-child__outer-wrap .uagb-faq-questions-button {
+
+    cursor: pointer;
+    display: table;
+    padding: 15px;
+    .uagb-faq-icon-wrap {
+
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .uagb-question {
+
+        display: table-cell;
+        padding-left: 20px;
+    }
+}
+[data-type="uagb/faq-child"] .uagb-faq-child__outer-wrap .uagb-content p {
+    margin: 0;
+    padding: 15px;
+}
+[data-type="uagb/faq-child"] .uagb-faq-child__outer-wrap .uagb-faq-item .uagb-content {
+    display: none;
+}

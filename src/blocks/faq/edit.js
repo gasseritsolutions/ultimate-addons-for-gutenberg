@@ -73,14 +73,12 @@ class UAGBFaqEdit extends Component {
 	onchangeIcon ( value ) {
 		const { replaceInnerBlocks } = dispatch( 'core/block-editor' );
 		const { setAttributes } = this.props
-		const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
 		let innerBlocks = select('core/block-editor').getBlocks( this.props.clientId );
-		getChildBlocks.forEach((faqChild, key) => {
+		innerBlocks.forEach((faqChild, key) => {
 			faqChild.attributes.icon = value
 		});
 
 		setAttributes( { icon: value } )
-		console.log(innerBlocks)
 		replaceInnerBlocks( this.props.clientId, innerBlocks, false );
 	}
 	onchangeActiveIcon ( value ) {

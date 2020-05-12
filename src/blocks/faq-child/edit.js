@@ -92,29 +92,25 @@ class UAGBFaqChildEdit extends Component {
 		const faqRenderAccordion = () => {
 
 			return (
-
 				<div className="uagb-faq-child__wrapper">
-					<div className="uagb-faq-child-repeater">
-						<div className="uag-faq-layout">
-							<div className="uag-title" aria-expanded="false">                    
-								<span className="uag-icon uag-icon-right">
-								    { renderSVG(icon) }
-									{/* <span className="uag-icon-opened"><i className="fas fa-angle-up"></i></span> */}
-								</span>
-								<span className="uag-question uag-question-span">
-									{ question }
-								</span>
+					<div className="uagb-faq-item">
+						<div className="uagb-faq-questions-button uagb-faq-questions">
+							<div className="uagb-icon uagb-faq-icon-wrap">
+								{ renderSVG(icon) }
 							</div>
-							<div className="uag-content">
-								<span>
-									<p>
-										{ answer }
-									</p>
-								</span>
+							<div className="uagb-question">
+									{ question }
 							</div>
 						</div>
+						<div className="uagb-content">
+							<span>
+								<p>
+									{ answer }
+								</p>
+							</span>
+						</div>
 					</div>
-                </div>
+				</div>
 			)
 		}
 		return (

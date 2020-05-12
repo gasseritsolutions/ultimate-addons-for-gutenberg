@@ -2,10 +2,13 @@
 	width: auto;
     padding-left: 0;
     padding-right: 0;
-    margin-top: 10px;
-	margin-bottom: 10px;
+    margin-top: 0px;
+	margin-bottom: 0px;
 }
 [data-type="uagb/faq"] .block-editor-inner-blocks > .block-editor-block-list__layout {
 
     display: block;
+}
+[data-type="uagb/faq"] .uagb-faq-child__outer-wrap:first-child .uagb-faq-item .uagb-content {
+    display: table-cell;
 }

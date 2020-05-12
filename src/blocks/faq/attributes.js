@@ -57,7 +57,7 @@ const attributes = {
 	},
 	boxBgColor: {
 		type: "string",
-		default: "#3a3a3a"
+		default: "#eeeeee"
 	},
 	boxPaddingTypeMobile: {
 		type: "string",
