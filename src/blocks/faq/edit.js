@@ -19,7 +19,7 @@ import TypographyControl from "../../components/typography"
 import WebfontLoader from "../../components/typography/fontloader"
 
 const { __ } = wp.i18n
-const { select } = wp.data;
+const { select, dispatch } = wp.data;
 const {
 	Component,
 	Fragment,
@@ -43,6 +43,11 @@ const {
 	Dashicon,
 } = wp.components
 
+const { 
+	withDispatch, 
+	useDispatch, 
+	useSelect 
+} = wp.data
 const ALLOWED_BLOCKS = [ "uagb/faq-child" ]
 
 let svg_icons = Object.keys( UAGBIcon )
@@ -66,14 +71,17 @@ class UAGBFaqEdit extends Component {
 	}
 
 	onchangeIcon ( value ) {
+		const { replaceInnerBlocks } = dispatch( 'core/block-editor' );
 		const { setAttributes } = this.props
 		const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
-
+		let innerBlocks = select('core/block-editor').getBlocks( this.props.clientId );
 		getChildBlocks.forEach((faqChild, key) => {
 			faqChild.attributes.icon = value
 		});
 
 		setAttributes( { icon: value } )
+		console.log(innerBlocks)
+		replaceInnerBlocks( this.props.clientId, innerBlocks, false );
 	}
 	onchangeActiveIcon ( value ) {
 		const { setAttributes } = this.props
@@ -95,7 +103,7 @@ class UAGBFaqEdit extends Component {
 
 		setAttributes( { layout: value } )
 	}
-
+ 
 	render() {
 
 		const { attributes, setAttributes } = this.props
